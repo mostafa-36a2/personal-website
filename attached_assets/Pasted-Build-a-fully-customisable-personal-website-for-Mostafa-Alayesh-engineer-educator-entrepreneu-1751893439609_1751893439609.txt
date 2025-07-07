@@ -1,0 +1,47 @@
+Build a fully-customisable personal website for **Mostafa Alayesh — engineer, educator & entrepreneur**.  
+Primary goal: act as a rich gateway for anyone who wants to understand my background, skills, knowledge and achievements in depth.
+
+🔹 **Overall feel**
+• Clean, modern, fast, mobile-first and accessible (WCAG 2.1 AA).  
+• Minimalist dark-on-light default with optional dark mode; accent colour #00AEEF.  
+• Subtle micro-interactions (hover, reveal-on-scroll, progress bars).  
+• Sans-serif body font (e.g. Inter) + monospaced highlights (Source Code Pro) to hint at my coding roots.  
+
+🔹 **Core pages / sections**
+1. **Hero** — Name, headline (“Engineer · Product Strategist · Lifelong Learner”), high-impact photo/illustration, quick CTA buttons (“Hire me”, “Download CV”, “Let’s talk”).  
+2. **About in 60 Seconds** — concise bio + MBTI INTP badge + key stats (years experience, code contests won, WPM typing speed).  
+3. **Skills & Domains** — interactive grid or accordion grouped by:  
+   • Software & Data (Python stack, Linux, DevOps, SQL/NoSQL, ML basics)  
+   • Engineering & Telecom (Core PS automation, network protocols)  
+   • Business & MBA topics (strategy, accounting, feasibility, product management PMP)  
+   • Soft skills (copy-writing AR/EN, teaching, public speaking).  
+   Allow tag-based filtering.  
+4. **Timeline** — vertical or horizontal journey: education, companies, freelancing, teaching, notable pivots.  
+5. **Projects & Achievements** — card gallery with filters (code, research, entrepreneurship). Feature:  
+   • Android PIN Unlocker (GitHub stars)  
+   • DCPC contest 1st place  
+   • MBA thesis on crowdsourced knowledge institutes  
+   • Published PostgreSQL Arabic guide, etc.  
+6. **“Mostafa as a Service”** — offerings (Python training, market analysis, EdTech bootcamps, freelance consulting) with pricing CTA.  
+7. **Learning Hub / Blog** — long-form articles, slide decks, YouTube embeds; markdown-friendly CMS.  
+8. **Reading / Gaming / Movies shelves** — auto-carousel lists that humanise me.  
+9. **Contact & Social presence** — linked icons (GitHub, LinkedIn, X/Twitter, YouTube, Codeforces, Telegram, etc.) + secure contact form.  
+10. **Colophon** — stack used to build the site, open-source credits, sitemap.
+
+🔹 **Technical & customisation requirements**
+• Site generator should output clean HTML5/JS or React with modular components; easy to swap styles or rearrange sections via drag-and-drop in editor.  
+• Global style variables (colour, typography, spacing) exposed in settings panel.  
+• Light/Dark toggle, RTL-ready for Arabic.  
+• SEO basics: JSON-LD Person schema, Open Graph tags, favicons.  
+• Built-in newsletter signup (Mailchimp/ConvertKit), GDPR-compliant cookies banner.  
+• Google Analytics 4 or Plausible hook-in.  
+• Code-friendly blog syntax highlighting.  
+• Optional multilingual scaffold (EN primary, AR secondary).  
+
+🔹 **Stretch features (nice-to-have)**  
+• Skill-cloud animation around portrait.  
+• Interactive resume PDF generator.  
+• API endpoint to pull latest GitHub repos or YouTube uploads.  
+• Visitor heat-map analytics panel in dashboard.
+
+Generate all placeholder copy from the details above, but keep it editable. Use royalty-free tech-themed imagery and subtle SVG icons. Output ready-to-deploy project with clear file structure.
