@@ -1,34 +1,11 @@
 services:
-  app:
+  personal-portfolio:
     build: .
+    container_name: personal-portfolio-app
     ports:
-      - "3002:3000"  # Client
-      - "5002:5000"  # Server
-    environment:
-      - NODE_ENV=production
+      - "3000:3000"
     restart: unless-stopped
     volumes:
-      - ./attached_assets:/app/attached_assets
-    networks:
-      - app-network
-
-  # Database (if needed - uncomment if you're using one)
-  # db:
-  #   image: postgres:15
-  #   environment:
-  #     POSTGRES_USER: youruser
-  #     POSTGRES_PASSWORD: yourpassword
-  #     POSTGRES_DB: yourdb
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   networks:
-  #     - app-network
-  #   ports:
-  #     - "5432:5432"
-
-networks:
-  app-network:
-    driver: bridge
-
-# volumes:
-#   postgres_data:
+      - .:/app
+      - /app/node_modules
+#    entrypoint: ["sleep", "infinity"]

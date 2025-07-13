@@ -1,45 +1,46 @@
-# Stage 1: Build the client
-FROM node:18-alpine AS client-builder
+# Stage 1: Build frontend
+FROM node:18 AS frontend-build
+WORKDIR /app/client
+COPY client/package*.json ./
+ENV NODE_ENV=production
+RUN npm install
+COPY client ./
+RUN npm run build
+
+# Stage 2: Build backend
+FROM node:18 AS backend-build
+
 WORKDIR /app
-COPY client/package.json client/package-lock.json ./client/
-COPY package.json package-lock.json ./
-RUN npm ci
+
+COPY package*.json ./
+
+ENV NODE_ENV=production
+
+RUN npm install
+
 COPY . .
-RUN npm run build --prefix client
 
-# Stage 2: Build the server
-FROM node:18-alpine AS server-builder
-WORKDIR /app
-COPY server/package.json server/package-lock.json ./server/
-COPY package.json package-lock.json ./
-RUN npm ci
-COPY . .
-RUN npm run build --prefix server
+RUN npm run build
 
-# Stage 3: Production image
-FROM node:18-alpine
+RUN npm prune --omit=dev
+
+# Stage 3: Production container
+FROM node:18-slim
 WORKDIR /app
 
-# Copy built assets
-COPY --from=client-builder /app/client/dist ./client/dist
-COPY --from=server-builder /app/server/dist ./server/dist
+# Copy backend build
+COPY --from=backend-build /app/dist ./dist
 
-# Copy necessary files
-COPY --from=server-builder /app/server/package.json ./server/
-COPY --from=client-builder /app/client/package.json ./client/
-COPY package.json package-lock.json ./
+# Copy frontend build
+COPY --from=frontend-build /app/client/dist ./public
 
-# Install production dependencies
-RUN npm ci --omit=dev
+# Copy only production dependencies
+COPY package*.json ./
+RUN npm install --omit=dev
 
-# Copy other required files
-COPY shared ./shared
-COPY drizzle.config.ts .
-COPY tailwind.config.ts .
-COPY tsconfig.json .
+# Expose app port
+EXPOSE 3000
 
-# Expose ports (client on 3000, server on 5000)
-EXPOSE 3002 5002
-
-# Start both client and server
-CMD ["sh", "-c", "npm run start --prefix server & serve -s client/dist -l 3000"]
+# Run app
+CMD ["node", "dist/index.js"]
+# CMD ["sleep","infinite"]
